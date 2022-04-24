@@ -12,8 +12,12 @@ const Post = ({ title, body, image }) => {
             projectId: 'z7oi31gs',
             dataset: 'production',
         });
-
-        setImageUrl(imgBuilder.image(image));
+        if (image) {
+            setImageUrl(imgBuilder.image(image));
+        } else {
+            setImageUrl('https://via.placeholder.com/500');
+        }
+        
     }, [image])
 
     return (
@@ -58,7 +62,7 @@ export const getServerSideProps = async (pageContext) => {
             props: {
                 body: post.body,
                 title: post.title,
-                image: post.mainImage
+                image: post.mainImage || null
             }
         }
     }

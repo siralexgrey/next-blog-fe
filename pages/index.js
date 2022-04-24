@@ -19,9 +19,17 @@ export default function Home({ posts }) {
 
       setMappedPosts(
         posts.map(p => {
-          return {
-            ...p,
-            mainImage: imgBuilder.image(p.mainImage).width(500).height(250),
+          console.log(p.mainImage);
+          if (p.mainImage) {
+            return {
+              ...p,
+              mainImage: imgBuilder.image(p.mainImage).width(500).height(250),
+            }
+          } else {
+            return {
+              ...p,
+              mainImage: 'https://via.placeholder.com/500x250'
+            }
           }
         })
       );
